@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+.venv/
+env/
+
+# ROS2 / colcon
+build/
+install/
+log/
+logs/
+
+# PX4
+*.ulg
+*.px4log
+
+# 결과물 (필요한 것만 골라서 커밋)
+outputs/
+*.bag
+*.mcap
+
+# 대용량 미디어
+*.mp4
+*.mov
+*.avi
+
+# 비밀
+.env
+*.key
+secrets.json
+credentials.json
+
+# 에디터
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
