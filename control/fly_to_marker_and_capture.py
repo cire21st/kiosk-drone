@@ -15,7 +15,7 @@ from mavsdk import System
 from mavsdk.offboard import OffboardError, PositionNedYaw
 
 ALT = -1.5      # NED z for 1.5m altitude (matches wall center height)
-NORTH_TARGET = 1.5  # 0.6m stand-off from wall at y=3
+NORTH_TARGET = 1.2  # 0.6m stand-off from wall at y=3
 YAW_TO_MARKER = 0.0  # degrees; spawn yaw is irrelevant, NED yaw 0 = north = wall direction
 HOLD_SEC = 6
 SETTLE_SEC = 4
