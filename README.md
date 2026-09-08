@@ -62,7 +62,7 @@ def control_loop():    # 제어 — 안 바뀜
 | LLM 기반 패스 플래닝 | `topic-llm-planning` | 박준우, 조희호 , 손혜성|
 | 단안 다중뷰 비전 이동 | `topic-mono-vision` | 김다인, 안정현 |
 
----
+
 
 ## 디렉터리
 
@@ -75,7 +75,10 @@ sim/        Gazebo 월드, 모델, 마커 생성
 docs/       실험 기록, 측정 데이터
 tools/      유틸리티 스크립트
 ```
+각자 작업 위치:
 
+단안 다중뷰 → vision/, 브랜치 vision/mono-multiview
+LLM 패스 플래닝 → agent/, 브랜치 agent/llm-path-planning
 ---
 
 ## 시작하기
