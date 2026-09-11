@@ -1,7 +1,7 @@
 services:
   ros-jazzy-novnc:
     container_name: ros-jazzy-novnc
-    image: eric321kr/ros-jazzy-full:latest 
+    image: cire21st/ros-jazzy-full:latest 
     privileged: true
     ipc: host
     pid: host
