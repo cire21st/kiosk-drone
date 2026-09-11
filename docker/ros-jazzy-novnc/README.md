@@ -1,182 +1,72 @@
-# ROS 2 Jazzy noVNC Docker
-based on https://github.com/cire21st/ros-jazzy-novnc-docker
+# ROS2 Jazzy noVNC Docker
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/b4d60d66-627c-4739-bc7a-4949ed8917fe" width="175" height="90" />
 
-Docker를 이용해 **ROS 2 Jazzy + Ubuntu 24.04 데스크톱 환경**을 별도의 ROS 2 설치 없이 실행할 수 있는 Docker 환경입니다.
+브라우저만으로 ROS2 Jazzy(Ubuntu 24.04) 데스크톱 환경에 접속할 수 있는 Docker 이미지입니다.
+별도의 ROS2 설치 없이, Docker만 있으면 noVNC를 통해 브라우저로 바로 실습 환경을 띄울 수 있습니다.
 
-웹 브라우저를 통해 Ubuntu 데스크톱에 접속할 수 있으며, Docker만 설치되어 있다면 Windows / macOS / Linux에서 사용할 수 있습니다.
+## 환경 정보
+- Ubuntu 24.04 
+- ROS2 배포판: **Jazzy** (Ubuntu 24.04 기반)
+- 컨테이너 접속 시 터미널을 열면 ROS2 환경이 자동으로 설정되어 있습니다. (`source /opt/ros/jazzy/setup.bash` 자동 적용)
+- `ROS_DOMAIN_ID=30`으로 설정되어 있습니다. (다른 실습생과 같은 네트워크에서 토픽이 섞이지 않도록 하기 위함이니, 임의로 바꾸지 마세요.)
 
-> **사용자는 Docker만 설치하면 됩니다.**
-> Dockerfile을 직접 빌드하거나 ROS 2를 별도로 설치할 필요가 없습니다.
 
----
+## 사전 준비물
 
-## 🖥️ 제공 환경
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows / Mac) 또는 Docker Engine (Linux)
 
-* Ubuntu 24.04
-* ROS 2 Jazzy
-* noVNC 기반 웹 브라우저 원격 데스크톱
-* ROS 2 개발 환경
-* 터미널
-* VSCodium
-* Firefox
-* `ROS_DOMAIN_ID=30`
-* Linux AMD64 환경
-
-Docker 이미지:
-
-```text
-eric321kr/ros-jazzy-full:latest
-```
-
----
-
-# 🚀 빠른 시작
-
-## 1. Docker 설치
-
-### Windows / macOS
-
-[Docker Desktop](https://www.docker.com/products/docker-desktop/)을 설치합니다.
-
-설치 후 Docker Desktop을 실행해 주세요.
-
+설치 확인:
 ```bash
 docker --version
 docker compose version
 ```
+설치후 반드시 Docker Desktop 실행:
+```
+win키 + Docker Desktop 검색 후 실행
+```
+## 실행 방법
 
-두 명령 모두 버전 정보가 출력되면 정상입니다.
-
----
-
-## 2. 저장소 다운로드
-
-터미널에서 다음 명령을 실행합니다.
+### 1. 이 저장소 클론
 
 ```bash
-git clone https://github.com/cire21st/kiosk-drone.git
-cd docker\ros-jazzy-novnc
+git clone https://github.com/cire21st/ros-jazzy-novnc-docker.git
+cd ros-jazzy-novnc-docker
 ```
 
----
-
-## 3. Docker 환경 실행
-
-다음 명령 하나만 실행하면 됩니다.
+### 2. 컨테이너 실행
 
 ```bash
 docker compose up -d
 ```
 
-처음 실행할 때는 Docker 이미지를 다운로드하기 때문에 시간이 조금 걸릴 수 있습니다.
+처음 실행 시 이미지를 다운로드하므로 몇 분 정도 걸릴 수 있습니다. 두 번째 실행부터는 즉시 시작됩니다.
 
-이미지를 다운로드한 이후에는 빠르게 실행됩니다.
+### 3. 브라우저로 접속
 
-실행 상태를 확인하려면:
+컨테이너가 뜨면 브라우저에서 아래 주소로 접속합니다.
 
-```bash
-docker compose ps
+```
+http://localhost/
 ```
 
-다음과 같이 컨테이너가 `Up` 상태라면 정상적으로 실행된 것입니다.
+브라우저에서 `http://localhost/` 접속하면 데스크톱 화면이 뜹니다.
+noVNC의 연결 버튼을 클릭하여 Ubuntu를 자유롭게 사용합니다.
 
-```text
-NAME               STATUS
-ros-jazzy-novnc    Up
-```
-
----
-
-# 🌐 4. 웹 브라우저로 접속
-
-컨테이너가 실행되면 웹 브라우저에서 다음 주소로 접속합니다.
-
-```text
-http://localhost:8080
-```
-
-Ubuntu 데스크톱 화면이 나타나면 정상적으로 실행된 것입니다.
-
-별도의 VNC 프로그램이나 SSH 접속은 필요하지 않습니다.
-
----
-
-# 📁 실습 파일 저장
-
-저장소의 `workspace` 폴더는 Docker 컨테이너 내부의 Ubuntu 바탕화면과 연결됩니다.
-
-```text
-ros-jazzy-novnc-docker/
-├── docker-compose.yaml
-├── README.md
-└── workspace/
-```
-
-컨테이너 내부:
-
-```text
-/home/ubuntu/Desktop
-```
-
-와 로컬 컴퓨터의:
-
-```text
-./workspace
-```
-
-가 연결되어 있습니다.
-
-따라서:
-
-```text
-로컬 workspace
-      ↕
-컨테이너의 ~/Desktop
-```
-
-으로 파일이 동기화됩니다.
-
-### 예시
-
-Windows에서:
-
-```text
-workspace/test.py
-```
-
-를 만들면 Docker 내부 Ubuntu의 바탕화면에서도:
-
-```text
-~/Desktop/test.py
-```
-
-로 확인할 수 있습니다.
-
-반대로 Docker 내부 바탕화면에서 만든 파일도 로컬 `workspace` 폴더에 저장됩니다.
-
-> **실습 코드와 과제 파일은 반드시 ****`~/Desktop`**** 또는 그 하위 폴더에 저장하는 것을 권장합니다.**
-
-컨테이너를 삭제하거나 다시 실행해도 `workspace`에 저장된 파일은 유지됩니다.
-
----
-
-# 🐳 Docker 환경 종료
-
-실행 중인 컨테이너를 종료하려면:
+### 4. 종료
 
 ```bash
 docker compose down
 ```
 
-다시 실행하려면:
+## 실습 파일 저장 위치(중요!!)
 
-```bash
-docker compose up -d
-```
+`workspace` 폴더가 컨테이너 바탕화면(`~/Desktop`)과 연결되어 있습니다. 
+(`~/Desktop`) 밖에 디렉토리에 정보는 저장되지 않습니다!! 실습 코드는 (`~/Desktop`) 안에 저장하세요.
+- **컨테이너 안에서 바탕화면에 작업한 내용은** → 로컬 `workspace` 폴더에 그대로 저장됩니다.
 
-하면 됩니다.
+즉, 컨테이너를 껐다 켜거나 삭제해도 **`workspace` 폴더 안의 내용은 사라지지 않습니다.**
 
----
+실습 코드는 반드시 바탕화면(또는 그 하위 폴더)에 저장하세요.
 
 # 🔄 자주 사용하는 명령어
 
