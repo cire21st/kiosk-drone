@@ -29,8 +29,8 @@ win키 + Docker Desktop 검색 후 실행
 ### 1. 이 저장소 클론
 
 ```bash
-git clone https://github.com/cire21st/ros-jazzy-novnc-docker.git
-cd ros-jazzy-novnc-docker
+git clone https://github.com/joheeho/kiosk-drone.git
+cd kiosk-drone/docker/ros-jazzy-novnc
 ```
 
 ### 2. 컨테이너 실행
@@ -46,10 +46,10 @@ docker compose up -d
 컨테이너가 뜨면 브라우저에서 아래 주소로 접속합니다.
 
 ```
-http://localhost/
+http://localhost:8080/
 ```
 
-브라우저에서 `http://localhost/` 접속하면 데스크톱 화면이 뜹니다.
+브라우저에서 `http://localhost:8080/` 접속하면 데스크톱 화면이 뜹니다.
 noVNC의 연결 버튼을 클릭하여 Ubuntu를 자유롭게 사용합니다.
 
 ### 4. 종료
@@ -197,7 +197,7 @@ docker compose down
 Docker 이미지까지 삭제하려면:
 
 ```bash
-docker rmi eric321kr/ros-jazzy-full:latest
+docker rmi cire21st/ros-jazzy-full:latest
 ```
 
 > `workspace` 폴더는 Docker 컨테이너와 별도로 로컬 컴퓨터에 존재하므로 이미지나 컨테이너를 삭제해도 파일이 삭제되지 않습니다.
